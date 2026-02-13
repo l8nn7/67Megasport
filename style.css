@@ -72,13 +72,18 @@ body {
 
 /* ===== Hero Section ===== */
 .hero {
-    background-image: linear-gradient(135deg, rgba(26, 71, 42, 0.4) 0%, rgba(46, 204, 113, 0.4) 100%), url('bilder/Homepage');
-    background-size: cover;
+    background-image: linear-gradient(135deg, rgba(26, 71, 42, 0.4) 0%, rgba(46, 204, 113, 0.4) 100%), url('bilder/Homepage.png');
+    background-size: contain;
     background-position: center;
+    background-repeat: no-repeat;
     background-attachment: fixed;
     color: var(--text-light);
-    padding: 120px 20px;
+    padding: 80px 20px;
+    min-height: 500px;
     text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .hero h1 {
@@ -103,6 +108,9 @@ body {
     font-weight: 600;
     cursor: pointer;
     transition: background-color 0.3s ease, transform 0.2s ease;
+    display: inline-block;
+    text-decoration: none;
+}
 }
 
 .cta-button:hover {
@@ -126,9 +134,10 @@ body {
 }
 
 .services-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    display: flex;
+    flex-direction: column;
     gap: 30px;
+    padding: 10px 0;
 }
 
 .service-card {
@@ -138,6 +147,25 @@ body {
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
     border-left: 4px solid var(--secondary-color);
+    overflow: hidden;
+}
+
+.service-image {
+    width: 200px;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 8px;
+    flex-shrink: 0;
+}
+
+.service-card-content {
+    display: flex;
+    gap: 25px;
+    align-items: center;
+}
+
+.service-text {
+    flex: 1;
 }
 
 .service-card:hover {
@@ -154,6 +182,72 @@ body {
 .service-card p {
     color: #555;
     line-height: 1.7;
+}
+
+/* ===== Expandable Service Card ===== */
+.service-card.expandable {
+    padding: 0;
+    cursor: pointer;
+}
+
+.service-card.expandable summary {
+    padding: 40px 25px;
+    list-style: none;
+    outline: none;
+}
+
+.service-card.expandable summary::-webkit-details-marker {
+    display: none;
+}
+
+.service-card.expandable summary::before {
+    content: '▼';
+    display: inline-block;
+    margin-right: 12px;
+    font-size: 14px;
+    transition: transform 0.3s ease;
+    color: var(--secondary-color);
+}
+
+.service-card.expandable[open] summary::before {
+    transform: rotate(180deg);
+}
+
+.service-card.expandable h3 {
+    display: inline;
+    margin: 0;
+}
+
+.expandable-content {
+    padding: 0 25px 40px 25px;
+    border-top: 1px solid #e0e0e0;
+    animation: slideDown 0.3s ease;
+}
+
+@keyframes slideDown {
+    from {
+        opacity: 0;
+        max-height: 0;
+    }
+    to {
+        opacity: 1;
+        max-height: 1000px;
+    }
+}
+
+.expandable-content p {
+    color: #555;
+    line-height: 1.7;
+    margin-bottom: 10px;
+}
+
+.expandable-content ul {
+    color: #555;
+    line-height: 1.8;
+}
+
+.expandable-content li {
+    margin-bottom: 8px;
 }
 
 /* ===== About Section ===== */
@@ -177,9 +271,19 @@ body {
     padding: 80px 20px;
 }
 
+.contact-content {
+    display: flex;
+    gap: 50px;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.contact-form-wrapper {
+    flex: 1;
+    min-width: 300px;
+}
+
 .contact-form {
-    max-width: 600px;
-    margin: 0 auto;
     display: flex;
     flex-direction: column;
     gap: 20px;
@@ -200,6 +304,22 @@ body {
     outline: none;
     border-color: var(--secondary-color);
     box-shadow: 0 0 5px rgba(46, 204, 113, 0.2);
+}
+
+.contact-image-wrapper {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    min-width: 250px;
+}
+
+.contact-image {
+    width: 100%;
+    max-width: 300px;
+    height: auto;
+    border-radius: 12px;
+    box-shadow: 0 6px 25px rgba(0, 0, 0, 0.15);
+    object-fit: cover;
 }
 
 /* ===== Footer ===== */
